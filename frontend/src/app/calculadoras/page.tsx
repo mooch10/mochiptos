@@ -91,42 +91,42 @@ export default function CalculadorasPage() {
         </p>
       </div>
 
-      {/* Tabs Switcher */}
-      <div className="flex rounded-xl border border-slate-800 bg-slate-900/80 p-1.5 backdrop-blur-md">
+      {/* Tabs Switcher - Responsive Mobile Grid */}
+      <div className="flex flex-col sm:flex-row gap-2 rounded-2xl border border-slate-800 bg-slate-900/80 p-2 backdrop-blur-md">
         <button
           onClick={() => setActiveTab("icl")}
-          className={`flex flex-1 items-center justify-center gap-2 rounded-lg py-3 text-sm font-semibold transition-all ${
+          className={`flex items-center justify-center gap-2 rounded-xl py-3 px-4 text-xs sm:text-sm font-semibold transition-all ${
             activeTab === "icl"
               ? "bg-blue-600 text-white shadow-lg shadow-blue-500/25"
               : "text-slate-400 hover:text-white"
           }`}
         >
-          <TrendingUp className="h-4 w-4" />
-          Ajuste ICL (BCRA)
+          <TrendingUp className="h-4 w-4 shrink-0" />
+          <span>Ajuste ICL (BCRA)</span>
         </button>
 
         <button
           onClick={() => setActiveTab("ipc")}
-          className={`flex flex-1 items-center justify-center gap-2 rounded-lg py-3 text-sm font-semibold transition-all ${
+          className={`flex items-center justify-center gap-2 rounded-xl py-3 px-4 text-xs sm:text-sm font-semibold transition-all ${
             activeTab === "ipc"
               ? "bg-blue-600 text-white shadow-lg shadow-blue-500/25"
               : "text-slate-400 hover:text-white"
           }`}
         >
-          <Calendar className="h-4 w-4" />
-          Ajuste IPC (INDEC)
+          <Calendar className="h-4 w-4 shrink-0" />
+          <span>Ajuste IPC (INDEC)</span>
         </button>
 
         <button
           onClick={() => setActiveTab("uva")}
-          className={`flex flex-1 items-center justify-center gap-2 rounded-lg py-3 text-sm font-semibold transition-all ${
+          className={`flex items-center justify-center gap-2 rounded-xl py-3 px-4 text-xs sm:text-sm font-semibold transition-all ${
             activeTab === "uva"
               ? "bg-blue-600 text-white shadow-lg shadow-blue-500/25"
               : "text-slate-400 hover:text-white"
           }`}
         >
-          <Landmark className="h-4 w-4" />
-          Simulador Hipotecario UVA
+          <Landmark className="h-4 w-4 shrink-0" />
+          <span>Simulador Hipotecario UVA</span>
         </button>
       </div>
 
@@ -147,7 +147,7 @@ export default function CalculadorasPage() {
               />
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400">Fecha Inicio</label>
                 <input

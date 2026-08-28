@@ -253,9 +253,10 @@ export default function BuscadorPage() {
 
       {/* Grid de Resultados */}
       {loading ? (
-        <div className="flex flex-col items-center justify-center py-20 text-slate-400">
-          <Loader2 className="h-10 w-10 animate-spin text-blue-400 mb-4" />
-          <p className="text-sm font-semibold">Consultando la base de datos en Aiven Cloud...</p>
+        <div className="flex flex-col items-center justify-center py-20 text-slate-400 space-y-3">
+          <Loader2 className="h-10 w-10 animate-spin text-blue-400" />
+          <p className="text-base font-bold text-white">Explorando departamentos disponibles...</p>
+          <p className="text-xs text-slate-400 max-w-sm text-center">Buscando las mejores coincidencias según tus filtros seleccionados.</p>
         </div>
       ) : properties.length > 0 ? (
         <div className="space-y-4">

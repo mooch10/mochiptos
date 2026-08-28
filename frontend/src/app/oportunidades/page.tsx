@@ -266,9 +266,10 @@ export default function OportunidadesPage() {
 
       {/* Grid de Oportunidades */}
       {loading ? (
-        <div className="flex flex-col items-center justify-center py-20 text-slate-400">
-          <Loader2 className="h-10 w-10 animate-spin text-emerald-400 mb-4" />
-          <p className="text-sm font-semibold">Evaluando modelo RandomForest ML sobre los datos...</p>
+        <div className="flex flex-col items-center justify-center py-20 text-slate-400 space-y-3">
+          <Loader2 className="h-10 w-10 animate-spin text-emerald-400" />
+          <p className="text-base font-bold text-white">Buscando las mejores oportunidades de CABA...</p>
+          <p className="text-xs text-slate-400 max-w-sm text-center">Analizando más de 92.000 propiedades con nuestro modelo de valuación inteligente.</p>
         </div>
       ) : opportunities.length > 0 ? (
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
