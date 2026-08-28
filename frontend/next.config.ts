@@ -1,9 +1,6 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  devIndicators: {
-    appIsrStatus: false,
-  },
   async rewrites() {
     const apiTarget = process.env.NEXT_PUBLIC_API_URL || "https://mochiptos.onrender.com";
     return [
