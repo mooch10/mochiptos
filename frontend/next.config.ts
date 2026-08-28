@@ -5,10 +5,11 @@ const nextConfig: NextConfig = {
     appIsrStatus: false,
   },
   async rewrites() {
+    const apiTarget = process.env.NEXT_PUBLIC_API_URL || "https://mochiptos.onrender.com";
     return [
       {
         source: "/api/:path*",
-        destination: "http://127.0.0.1:8000/api/:path*",
+        destination: `${apiTarget}/api/:path*`,
       },
     ];
   },
