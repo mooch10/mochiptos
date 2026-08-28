@@ -126,7 +126,7 @@ def train_opportunity_detector_model(df: pd.DataFrame, force_retrain: bool = Fal
 
     model = Pipeline(steps=[
         ("preprocessor", preprocessor),
-        ("regressor", RandomForestRegressor(n_estimators=30, max_depth=10, random_state=42, n_jobs=1))
+        ("regressor", RandomForestRegressor(n_estimators=15, max_depth=8, random_state=42, n_jobs=1))
     ])
 
     model.fit(X, y_log)

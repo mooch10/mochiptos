@@ -33,6 +33,17 @@ def _fetch_deptos_df(db: Session, force_reload: bool = False) -> pd.DataFrame:
         """
         df = pd.read_sql(sql_query, db.bind)
         
+        # Optimización de tipos de datos para reducir RAM en servidores Serverless (Free Tier 512MB)
+        if not df.empty:
+            df["ambientes"] = df["ambientes"].fillna(1).astype("int8")
+            df["banos"] = df["banos"].fillna(1).astype("int8")
+            df["precio_usd"] = df["precio_usd"].astype("float32")
+            df["m2_totales"] = df["m2_totales"].astype("float32")
+            if "m2_cubiertos" in df.columns:
+                df["m2_cubiertos"] = df["m2_cubiertos"].astype("float32")
+            if "precio_m2" in df.columns:
+                df["precio_m2"] = df["precio_m2"].astype("float32")
+
         # Normalizar estado_propiedad para corregir codificación y sinónimos
         if "estado_propiedad" in df.columns:
             estado_map = {
