@@ -1,4 +1,6 @@
-const API_BASE = typeof window !== "undefined" ? `${window.location.origin}/api` : "http://127.0.0.1:8000/api";
+const API_BASE = typeof window !== "undefined"
+  ? `${window.location.origin}/api`
+  : `${process.env.NEXT_PUBLIC_API_URL || "https://mochiptos.onrender.com"}/api`;
 
 export async function fetchApi<T>(endpoint: string, params?: Record<string, any>): Promise<T> {
   const url = new URL(`${API_BASE}${endpoint}`);
