@@ -1,0 +1,24 @@
+# Entorno virtual y Python
+venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# Node y Frontend
+node_modules/
+.next/
+out/
+build/
+
+# Credenciales y Variables de Entorno (IMPORTANTE: NO SUBIR AL REPOSITORIO)
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# IDEs y SO
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
