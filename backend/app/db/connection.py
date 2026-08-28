@@ -5,7 +5,14 @@ from app.core.config import settings
 
 logger = logging.getLogger(__name__)
 
-engine = create_engine(settings.DATABASE_URL, pool_recycle=3600, echo=False)
+engine = create_engine(
+    settings.DATABASE_URL,
+    pool_recycle=280,
+    pool_pre_ping=True,
+    pool_size=5,
+    max_overflow=10,
+    echo=False
+)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 def get_db():
