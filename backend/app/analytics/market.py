@@ -2,7 +2,7 @@ import logging
 import pandas as pd
 import numpy as np
 from typing import Dict, Any, List, Tuple, Optional
-from sklearn.ensemble import RandomForestRegressor
+from sklearn.linear_model import Ridge
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
@@ -126,7 +126,7 @@ def train_opportunity_detector_model(df: pd.DataFrame, force_retrain: bool = Fal
 
     model = Pipeline(steps=[
         ("preprocessor", preprocessor),
-        ("regressor", RandomForestRegressor(n_estimators=15, max_depth=8, random_state=42, n_jobs=1))
+        ("regressor", Ridge(alpha=1.0))
     ])
 
     model.fit(X, y_log)
