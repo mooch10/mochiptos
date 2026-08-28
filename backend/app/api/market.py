@@ -25,11 +25,12 @@ def _fetch_deptos_df(db: Session, force_reload: bool = False) -> pd.DataFrame:
     try:
         sql_query = """
             SELECT id_publicacion, portal, titulo_aviso, barrio, direccion, ambientes, 
-                   habitaciones, banos, estado_propiedad, precio_usd, m2_totales, 
-                   m2_cubiertos, precio_m2, expensas, antiguedad, disposicion, 
-                   tiene_cochera, tiene_amenities, url_publicacion 
+                   banos, estado_propiedad, precio_usd, m2_totales, 
+                   m2_cubiertos, tiene_cochera, tiene_amenities, url_publicacion 
             FROM departamentos 
-            WHERE precio_usd IS NOT NULL AND m2_totales IS NOT NULL
+            WHERE precio_usd IS NOT NULL AND m2_totales IS NOT NULL AND precio_usd > 10000 AND m2_totales > 15
+            ORDER BY id_publicacion DESC
+            LIMIT 25000
         """
         df = pd.read_sql(sql_query, db.bind)
         
