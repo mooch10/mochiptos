@@ -152,11 +152,13 @@ def get_market_opportunities(
 
 @router.get("/barrios")
 def get_available_barrios(db: Session = Depends(get_db)):
-    """Obtiene la lista única de todos los barrios disponibles en la base de datos para el buscador."""
+    """Obtiene la lista única de todos los barrios disponibles en la base de datos usando cache ultrarrápido."""
     try:
-        stmt = select(Departamento.barrio).where(Departamento.barrio.isnot(None)).distinct().order_by(Departamento.barrio)
-        results = db.scalars(stmt).all()
-        return {"status": "success", "count": len(results), "data": results}
+        df = _fetch_deptos_df(db)
+        if df.empty:
+            return {"status": "success", "count": 0, "data": []}
+        barrios = sorted([str(b).strip() for b in df["barrio"].dropna().unique() if str(b).strip()])
+        return {"status": "success", "count": len(barrios), "data": barrios}
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error al obtener lista de barrios: {str(e)}")
 

@@ -293,8 +293,8 @@ export default function BuscadorPage() {
                       <span className="rounded-md bg-slate-950 px-2 py-1 border border-slate-800">{prop.ambientes} amb</span>
                       <span className="rounded-md bg-slate-950 px-2 py-1 border border-slate-800">{prop.m2_totales} m²</span>
                       <span className="rounded-md bg-slate-950 px-2 py-1 border border-slate-800">{prop.banos} baños</span>
-                      {prop.tiene_cochera && <span className="rounded-md bg-blue-950/60 text-blue-400 px-2 py-1 border border-blue-800/50">Cochera</span>}
-                      {prop.tiene_amenities && <span className="rounded-md bg-emerald-950/60 text-emerald-400 px-2 py-1 border border-emerald-800/50">Amenities</span>}
+                      {prop.tiene_cochera === true && <span className="rounded-md bg-blue-950/60 text-blue-400 px-2 py-1 border border-blue-800/50">Cochera</span>}
+                      {prop.tiene_amenities === true && <span className="rounded-md bg-emerald-950/60 text-emerald-400 px-2 py-1 border border-emerald-800/50">Amenities</span>}
                     </div>
                   </div>
                 </div>

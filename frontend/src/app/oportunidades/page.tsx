@@ -300,8 +300,8 @@ export default function OportunidadesPage() {
                     <span className="rounded-md bg-slate-950 px-2 py-1 border border-slate-800">{opp.ambientes} amb</span>
                     <span className="rounded-md bg-slate-950 px-2 py-1 border border-slate-800">{opp.m2_totales} m²</span>
                     <span className="rounded-md bg-slate-950 px-2 py-1 border border-slate-800">{opp.banos} baños</span>
-                    {opp.tiene_cochera && <span className="rounded-md bg-emerald-950/60 text-emerald-400 px-2 py-1 border border-emerald-800/50">Cochera</span>}
-                    {opp.tiene_amenities && <span className="rounded-md bg-blue-950/60 text-blue-400 px-2 py-1 border border-blue-800/50">Amenities</span>}
+                    {opp.tiene_cochera === true && <span className="rounded-md bg-emerald-950/60 text-emerald-400 px-2 py-1 border border-emerald-800/50">Cochera</span>}
+                    {opp.tiene_amenities === true && <span className="rounded-md bg-blue-950/60 text-blue-400 px-2 py-1 border border-blue-800/50">Amenities</span>}
                   </div>
                 </div>
               </div>
