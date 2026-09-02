@@ -4,9 +4,22 @@ import { useState, useEffect } from "react";
 import { fetchApi, Property } from "@/lib/api";
 import { Sparkles, MapPin, ExternalLink, Filter, Loader2, Check, ChevronDown, X } from "lucide-react";
 
+const CABA_BARRIOS_FALLBACK = [
+  "Abasto", "Agronomía", "Almagro", "Balvanera", "Barracas", "Belgrano", "Boedo",
+  "Caballito", "Chacarita", "Coghlan", "Colegiales", "Constitución", "Flores",
+  "Floresta", "La Boca", "La Paternal", "Liniers", "Mataderos", "Monte Castro",
+  "Montserrat", "Nueva Pompeya", "Núñez", "Palermo", "Parque Avellaneda",
+  "Parque Chacabuco", "Parque Chas", "Parque Patricios", "Puerto Madero",
+  "Recoleta", "Retiro", "Saavedra", "San Cristóbal", "San Nicolás", "San Telmo",
+  "Versalles", "Villa Crespo", "Villa del Parque", "Villa Devoto",
+  "Villa General Mitre", "Villa Lugano", "Villa Luro", "Villa Ortúzar",
+  "Villa Pueyrredón", "Villa Real", "Villa Riachuelo", "Villa Santa Rita",
+  "Villa Soldati", "Villa Urquiza"
+];
+
 export default function OportunidadesPage() {
   const [opportunities, setOpportunities] = useState<Property[]>([]);
-  const [barriosList, setBarriosList] = useState<string[]>([]);
+  const [barriosList, setBarriosList] = useState<string[]>(CABA_BARRIOS_FALLBACK);
   const [loading, setLoading] = useState(true);
 
   // Filtros idénticos al buscador general
@@ -22,7 +35,11 @@ export default function OportunidadesPage() {
 
   useEffect(() => {
     fetchApi<{ data: string[] }>("/market/barrios")
-      .then((res) => setBarriosList(res.data || []))
+      .then((res) => {
+        if (res.data && Array.isArray(res.data) && res.data.length > 0) {
+          setBarriosList(res.data);
+        }
+      })
       .catch((err) => console.error(err));
   }, []);
 
