@@ -9,6 +9,11 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Mochiptos - Inteligencia Inmobiliaria & Mercado CABA",
   description: "Plataforma de análisis de mercado inmobiliario en CABA con Machine Learning y simulaciones financieras.",
+  alternates: {
+    types: {
+      "text/markdown": "/llms.txt",
+    },
+  },
 };
 
 export default function RootLayout({

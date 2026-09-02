@@ -1,0 +1,37 @@
+# Mochiptos — Inteligencia Inmobiliaria & Análisis de Mercado CABA
+
+> Plataforma analítica integral del mercado inmobiliario en Ciudad Autónoma de Buenos Aires (CABA) impulsada por Machine Learning, scraping en tiempo real y simulaciones financieras avanzadas.
+
+## Información General
+- **Plataforma:** Mochiptos
+- **URL Oficial:** https://mochiptos.vercel.app
+- **Autor / Desarrollador:** Andrés Gómez
+- **Objetivo:** Detección de oportunidades inmobiliarias, análisis de rentabilidad (ROI, Cap Rate, Payback), valuación predictiva por metro cuadrado y scoring de riesgo barrial en CABA.
+
+---
+
+## Módulos y Capacidades Clave
+
+### 1. Radar de Mercado en Tiempo Real
+- Monitoreo continuo de publicaciones inmobiliarias con filtros de precio en USD, superficie (m² cubiertos y totales), expensas y antigüedad.
+- Detección de publicaciones engañosas o duplicadas mediante algoritmos de limpieza y normalización de datos.
+
+### 2. Valuador Inteligente & Machine Learning
+- Algoritmo predictivo de precio de mercado justo por metro cuadrado basado en regresión sobre variables barriales, tipología y amenidades.
+- Clasificación de publicaciones: "Oportunidad de Inversión", "Precio de Mercado" o "Sobrevaluado".
+
+### 3. Simulador Financiero & Proyección de Rentabilidad
+- Proyección de retorno sobre alquiler tradicional vs. temporal (Airbnb).
+- Cálculo de rentabilidad neta anual (Cap Rate), flujo de fondos proyectado a 5/10 años y tiempo de recuperación de capital (Payback).
+
+### 4. Inteligencia Geográfica por Barrios
+- Mapa interactivo de calor de precios y demanda por comunas y barrios (Palermo, Belgrano, Caballito, Recoleta, Villa Urquiza, etc.).
+- Comparativas históricas de evolución del valor del m² y volumen de oferta activa.
+
+---
+
+## Stack Tecnológico
+- **Frontend:** Next.js 15 (App Router), React 19, Tailwind CSS, Lucide Icons, Recharts.
+- **Backend & APIs:** FastAPI (Python), Pandas, Scikit-Learn, BeautifulSoup4 / Playwright.
+- **Base de Datos:** PostgreSQL con SQLAlchemy.
+- **Despliegue:** Vercel (Frontend Edge) + Backend Serverless / Cloud.
