@@ -1,85 +1,136 @@
-# 🏢 Deptos CABA - Inteligencia Inmobiliaria & ML
+﻿<div align="center">
 
-Plataforma integral de analítica, inteligencia inmobiliaria y machine learning diseñada para el mercado de departamentos en la Ciudad Autónoma de Buenos Aires (CABA). 
+# 🏢 Mochiptos | Real Estate Intelligence & Automated ML Valuation Platform
 
-El sistema extrae, limpia y analiza en tiempo real más de **92.000 publicaciones** inmobiliarias de múltiples portales (Zonaprop, Argenprop, Mercado Libre), calcula métricas $/m² por barrio ajustadas por outliers (IQR), proyecta modelos de valoración mediante **RandomForest Regressor** y provee calculadoras financieras avanzadas (Ajustes ICL, IPC y Créditos UVA).
+[![Live Demo](https://img.shields.io/badge/Demo-mochiptos.vercel.app-blue?style=for-the-badge&logo=vercel)](https://mochiptos.vercel.app)
+[![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
+[![Next.js 16](https://img.shields.io/badge/Next.js_16-black?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
+[![React 19](https://img.shields.io/badge/React_19-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://react.dev/)
+[![Scikit-Learn](https://img.shields.io/badge/scikit--learn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white)](https://scikit-learn.org/)
+[![Playwright](https://img.shields.io/badge/Playwright-45ba4b?style=for-the-badge&logo=playwright&logoColor=white)](https://playwright.dev/)
 
----
+An end-to-end real estate intelligence and automated valuation platform covering the Buenos Aires property market. The system continuously ingests, cleanses, and structures **92,000+ live property listings**, evaluates fair market valuation with a trained **RandomForest Regressor**, and surfaces undervalued investment opportunities via an asynchronous modern dashboard.
 
-## 📐 Arquitectura del Sistema
+[Live Demo](https://mochiptos.vercel.app) · [Report Bug](https://github.com/mooch10/mochiptos/issues) · [Request Feature](https://github.com/mooch10/mochiptos/issues)
 
-El proyecto está estructurado en una arquitectura cliente-servidor desacoplada:
-
-```
-C:\Programas\Deptos\
-├── backend/          # API REST modular (FastAPI), modelos ML, DB ORM (SQLAlchemy) y Pipelines ETL
-├── frontend/         # Interfaz Web interactiva (Next.js 16 App Router, React 19, Tailwind CSS, Framer Motion)
-└── README.md         # Documentación general del sistema
-```
+</div>
 
 ---
 
-## ⚡ Guía de Ejecución Rápida
+## 🌟 Key Highlights & Engineering Impact
 
-Para iniciar la aplicación localmente, abre dos terminales de PowerShell independientes:
+* **High-Throughput Scraping & Anti-Bot Bypass:** Distributed extraction pipelines built with **Playwright** and **BeautifulSoup**, featuring stealth headless browsing, custom headers, and request throttling to reliably ingest listings from leading real estate portals (Zonaprop, Argenprop, MercadoLibre).
+* **Robust Data Cleansing & Statistical Outlier Removal:** Implemented **IQR (Interquartile Range)** algorithms in **Pandas/NumPy** to filter out distorted prices, fraudulent listings, and anomalous square-meter values across all 48 official Buenos Aires neighborhoods.
+* **Predictive ML Opportunity Engine:** Production-ready **RandomForest Regressor** trained on normalized square-footage ratios, location features, and amenities with logarithmic target scaling (`log1p`/`expm1`) to estimate intrinsic property value and identify mispriced deals.
+* **Modern Decoupled Architecture:** High-performance asynchronous **FastAPI** backend integrated via **SQLAlchemy ORM** to a managed cloud database (**Aiven MySQL**), paired with a **Next.js 16 (Turbopack) & React 19** frontend.
 
-### 1. Iniciar el Backend (FastAPI)
+---
 
-```powershell
-cd C:\Programas\Deptos\backend
-C:\Programas\Deptos\venv\Scripts\python.exe main.py
+## 📐 System Architecture
+
+```mermaid
+flowchart TD
+    subgraph Ingestion ["1. Data Ingestion & ETL"]
+        P1[Zonaprop] --> SCR[Playwright Scrapers]
+        P2[Argenprop] --> SCR
+        P3[MercadoLibre] --> SCR
+        SCR --> RAW[(Raw Listings)]
+    end
+
+    subgraph Processing ["2. Processing & ML Pipeline"]
+        RAW --> IQR[IQR Outlier Filter & Cleansing]
+        IQR --> GEO[Geocoding & Currency Normalization]
+        GEO --> ML[RandomForest Regressor\nFair Value Estimation]
+        ML --> DB[(Cloud MySQL / Aiven)]
+    end
+
+    subgraph Serving ["3. API & Client Layer"]
+        DB --> API[FastAPI Backend\nREST Endpoints & Swagger]
+        API --> UI[Next.js 16 + React 19 Frontend\nDeployed on Vercel]
+    end
 ```
-* **URL de la API**: `http://127.0.0.1:8000`
-* **Documentación Swagger interactiva**: `http://127.0.0.1:8000/docs`
 
-### 2. Iniciar el Frontend (Next.js)
+---
 
-```powershell
-cd C:\Programas\Deptos\frontend
+## 🚀 Core Features
+
+| Feature | Endpoint / Route | Description |
+| :--- | :--- | :--- |
+| **ML Opportunity Finder** | `/oportunidades` | Real-time Top 50 ranked undervalued listings by comparing published price vs. ML-estimated fair value (calculating instant USD equity margin). |
+| **Neighborhood USD/m² Index** | `/mercado` | Robust median square-meter valuation metrics across 48 neighborhoods adjusted via statistical IQR filters. |
+| **Universal Live Search** | `/buscador` | High-performance interactive multi-filter query engine spanning the 92,000+ property database. |
+| **Financial Simulators** | `/calculadoras` | Real-time mortgage loan simulators (UVA, USD, ARS) and official lease adjustment calculators (ICL / IPC inflation index). |
+
+---
+
+## 🛠️ Tech Stack
+
+* **Backend & ML:** Python, FastAPI, Scikit-Learn, Pandas, NumPy, SQLAlchemy, PyMySQL, Uvicorn.
+* **Web Scraping:** Playwright, BeautifulSoup4, HTTPX.
+* **Frontend:** Next.js 16 (App Router, Turbopack), React 19, Tailwind CSS, Framer Motion, Recharts, Lucide Icons.
+* **Database & Cloud:** Managed MySQL on Aiven Cloud, Vercel (Frontend Hosting).
+
+---
+
+## ⚡ Quickstart & Local Setup
+
+### Prerequisites
+* Python 3.10+
+* Node.js 18+ and `npm`
+
+### 1. Backend Setup (FastAPI)
+```bash
+# Clone the repository
+git clone https://github.com/mooch10/mochiptos.git
+cd mochiptos/backend
+
+# Create and activate virtual environment
+python -m venv venv
+# On Windows:
+.\venv\Scripts\activate
+# On macOS/Linux:
+source venv/bin/activate
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Configure environment variables (.env)
+cp .env.example .env
+
+# Run FastAPI development server
+python main.py
+```
+* Interactive Swagger Docs: `http://127.0.0.1:8000/docs`
+
+### 2. Frontend Setup (Next.js)
+```bash
+cd ../frontend
+
+# Install node dependencies
+npm install
+
+# Start development server
 npm run dev
 ```
-* **Aplicación Web**: `http://localhost:3000`
+* Application will be live at: `http://localhost:3000`
 
 ---
 
-## 🛠️ Tecnologías y Módulos Clave
+## 🔒 Environment Variables Reference
 
-### 🐍 Backend (`/backend`)
-- **FastAPI**: API REST asíncrona de alto rendimiento.
-- **SQLAlchemy & PyMySQL**: Conexión y mapeo ORM hacia la base de datos MySQL en la nube (Aiven Cloud).
-- **Scikit-Learn & NumPy**: Modelo **RandomForest Regressor** entrenado con transformación logarítmica (`log1p`/`expm1`) y variables de superficie (`m2_cubiertos`, `ratio_cubierto`) para la predicción de valor justo de mercado.
-- **Pandas**: Procesamiento de datos analíticos en memoria y filtrado estadístico de outliers mediante el método Intercuartílico (IQR).
-- **Playwright & BeautifulSoup**: Scrapers automáticos con evasión de bloqueos WAF.
-
-### ⚛️ Frontend (`/frontend`)
-- **Next.js 16 (Turbopack) & React 19**: Framework moderno con renderizado SSR y Client Components.
-- **Tailwind CSS & Framer Motion**: Diseño UI/UX moderno estilo Dashboard Dark Theme con efectos visuales interactivos (*TrueFocus* de React Bits).
-- **Lucide React & Recharts**: Iconografía moderna y visualización gráfica de tendencias.
+Create a `.env` file in `/backend`:
+```env
+DB_HOST=your-cloud-mysql-host.aivencloud.com
+DB_PORT=your-db-port
+DB_USER=your-db-username
+DB_PASSWORD=your-db-password
+DB_NAME=your-db-name
+```
 
 ---
 
-## 🚀 Funcionalidades Principales
-
-1. **Detector de Oportunidades ML (`/oportunidades`)**:
-   - Carga el **Top 50 de mejores oportunidades globales** o filtradas por barrio, ambientes, estado, rango de precio, baños, cochera y amenities.
-   - Muestra el precio publicado vs. el valor estimado por Machine Learning, calculando el porcentaje de descuento y el margen de ganancia en USD.
-
-2. **Índice USD/m² por Barrio (`/mercado`)**:
-   - Ranking de medianas de precios por metro cuadrado en los 48 barrios oficiales de CABA, descartando distorsiones y publicaciones erróneas mediante IQR.
-
-3. **Buscador Universal por Barrio (`/buscador`)**:
-   - Filtro interactivo de propiedades en vivo sobre la base de datos de 92.000+ inmuebles.
-
-4. **Calculadoras Financieras & Ajustes (`/calculadoras`)**:
-   - **Simulador de Créditos UVA**: Cálculo de cuotas iniciales en UVA, ARS y USD con cotización oficial del dólar y valor UVA.
-   - **Calculadora de Alquileres ICL / IPC**: Proyección de aumentos de contratos de alquiler según el Índice de Contratos de Locación (BCRA) o Inflación IPC (INDEC).
-
-5. **Novedades en Tiempo Real**:
-   - Extracción automatizada de noticias y análisis del sector inmobiliario.
-
----
-
-## 🔒 Variables de Entorno
-
-- **Backend (`backend/.env`)**: Contiene las credenciales `DB_HOST`, `DB_PORT`, `DB_USER`, `DB_PASSWORD` y `DB_NAME`.
-- **Frontend (`frontend/.env.local`)**: Configuración de ambiente y proxies locales.
+## 👤 Author
+**Andrés Gómez Pietrobono**  
+* Buenos Aires, Argentina (Remote / UTC-3)
+* LinkedIn: [linkedin.com/in/andres-gomez-95662826b](https://linkedin.com/in/andres-gomez-95662826b)
+* GitHub: [@mooch10](https://github.com/mooch10)
